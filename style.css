@@ -4,6 +4,7 @@ html {
 
 body {
   margin: 8px 7.5vw;
+  background-color: gray;
 }
 
 h1 {
@@ -39,11 +40,19 @@ nav {
 }
 
 .main-nav-links {
-  margin: 0 15px;
+  margin: 0 10px;
 }
 
+/* Would love to have this not move the elements.
+  .main-nav-links:hover{
+  margin: 0 10px;
+  border: solid black 1px;
+  border-radius: 5px;
+  
+} */
+
 .nav-link {
-  font-size: 0.85rem;
+  font-size: 1.85rem;
   margin: 0 3px;
 }
 
