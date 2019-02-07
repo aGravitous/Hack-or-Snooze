@@ -14,6 +14,7 @@ let username = localStorage.getItem("username");
 // if we are, will show create story button
 if (token && username) {
   LOGGED_IN = true;
+  $("#nav-create-story").show();
 }
 
 $(document).ready(async function() {

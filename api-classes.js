@@ -28,13 +28,9 @@ class StoryList {
      It should also accept an object which with a title, author, and url
      */
   
+  // Takes in user information and story info from script.js, sends to server, comes back with
+  // server response. Pares down response, sends back to script.js.
   async addStory(user, newStory) {
-    // TODO - Implement this functions!
-    // this function should return the newly created story so it can be used in the script.js file where it will be appended to the DOM
-
-    // allow them to create a new story 
-      // send to API
-
     let storyObj = {
       author: user.name,
       title: newStory.title, 
