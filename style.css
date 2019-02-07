@@ -37,10 +37,12 @@ nav {
   align-items: center;
   padding: 20px 20px;
   border-radius: 3px 3px 0 0;
+  border: solid black 2px;
 }
 
 .main-nav-links {
-  margin: 0 10px;
+  margin: 0 15px;
+
 }
 
 /* Would love to have this not move the elements.
@@ -140,11 +142,16 @@ form > hr {
   margin: 20px 5px;
 }
 
+ol > li:nth-child(even) {
+  background-color: rgb(240, 240, 240);
+}
+
 .articles-list > li {
-  color: gray;
+  color: rgb(198, 198, 198);
   font-size: 0.8rem;
   margin: 10px 0;
   cursor: pointer;
+
 }
 
 .star,
