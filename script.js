@@ -191,21 +191,26 @@ $(document).ready(async function() {
     // render story markup
     const storyMarkup = $(
       `<li id="${story.storyId}">
-       <i class="far fa-grin-stars"></i>
+          <i class="far fa-grin-stars"></i>
           <a class="article-link" href="${story.url}" target="a_blank">
-            <strong>${story.title}</strong>
+              <strong>${story.title}</strong>
            </a>
           <small class="article-author">by ${story.author}</small>
           <small class="article-hostname ${hostName}">(${hostName})</small>
           <small class="article-username">posted by ${story.username}</small>
-          </li>`
+       </li>`
     );
 
     return storyMarkup;
   }
 
-  $("ol").on("click", ".fa-grin-stars", function(e){
-    $(e.target).toggleClass("far fas");
+  $("ol").on("click", ".fa-grin-stars", async function(e){
+    if (LOGGED_IN){
+      $(e.target).toggleClass("far fas");
+      let storyId = e.target.parentElement.id;
+      let response = await user.updateFavorites(user, storyId);
+      console.log(response)
+    }
   })
 
   // hide all elements in elementsArr

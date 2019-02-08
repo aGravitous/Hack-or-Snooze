@@ -148,6 +148,14 @@ class User {
     );
     return existingUser;
   }
+
+  async updateFavorites(user, storyId){
+    let username = user.username;
+    let response = await $.post(`${BASE_URL}/users/${username}/favorites/${storyId}`,
+      { token: user.loginToken }
+    );
+    return response;
+  }
 }
 /**
  * Class to represent a single story. Has one method to update.
