@@ -209,7 +209,7 @@ $(document).ready(async function() {
   $("ol").on("click", ".far", async function addFavorite(e){
     if (LOGGED_IN){
       let storyId = e.target.parentElement.id;
-      let response = await user.updateFavorites(user, storyId);
+      let response = await user.addFavorite(user, storyId);
       user.favorites = response.user.favorites;
       $(e.target).toggleClass("fas far");
     }
@@ -219,7 +219,7 @@ $(document).ready(async function() {
   $("ol").on("click", ".fas", async function removeFavorite(e){
     if (LOGGED_IN){
       let storyId = e.target.parentElement.id;
-      let response = await user.removeFavorites(user, storyId);
+      let response = await user.removeFavorite(user, storyId);
       console.log(response);
       user.favorites = response.user.favorites;
       $(e.target).toggleClass("far fas");

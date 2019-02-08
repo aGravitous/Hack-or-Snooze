@@ -148,8 +148,9 @@ class User {
     );
     return existingUser;
   }
-
-  async updateFavorites(user, storyId){
+  
+  // adds favorite to server and returns updated user favorite list
+  async addFavorite(user, storyId){
     let username = user.username;
     let response = await $.post(`${BASE_URL}/users/${username}/favorites/${storyId}`,
       { token: user.loginToken }
@@ -157,7 +158,8 @@ class User {
     return response;
   }
 
-  async removeFavorites(user, storyId){
+  // removes favorite from server and returns updated user favorite list
+  async removeFavorite(user, storyId){
     let username = user.username;
     let response = await $.ajax({
       url: `${BASE_URL}/users/${username}/favorites/${storyId}`,
