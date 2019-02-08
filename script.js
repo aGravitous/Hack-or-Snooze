@@ -15,6 +15,7 @@ let username = localStorage.getItem("username");
 if (token && username) {
   LOGGED_IN = true;
   $("#nav-create-story").show();
+  $("#nav-favorites").show();
 }
 
 $(document).ready(async function() {
@@ -28,6 +29,8 @@ $(document).ready(async function() {
   const $navLogin = $("#nav-login");
   const $navLogOut = $("#nav-logout");
   const $createStoryButton = $('#nav-create-story');
+  const $favoriteButton = $('#nav-favorites');
+  const $favoriteList = $('#favorited-articles');
   // if there is a token in localStorage, call User.stayLoggedIn
   //  to get an instance of User with the right details
   //  this is designed to run once, on page load
@@ -82,6 +85,7 @@ $(document).ready(async function() {
     user = newUser;
     loginAndSubmitForm();
     $createStoryButton.show();
+    $favoriteButton.show();
   });
 
   /**
@@ -159,6 +163,7 @@ $(document).ready(async function() {
     // update the navigation bar
     showNavForLoggedInUser();
     $createStoryButton.show();
+    $favoriteButton.show();
   }
 
   /**
@@ -204,13 +209,24 @@ $(document).ready(async function() {
     return storyMarkup;
   }
 
-  // Sets a favorite by changing icon to solid, adding story id to user on server,
-  // We want it to remove a favorite on server, and set icon to outline if already a favorite.
+  function addFavoritedArticles(favArr){
+    favArr.forEach(function(article){
+      $favoriteList.append(generateStoryHTML(article));
+    })
+  }
+
+  // Sets a favorite by changing icon to solid, adding story id to user on server.
+  // updates user instance with recently favorited article. appends most recent favorite to 
+  // DOM 
   $("ol").on("click", ".far", async function addFavorite(e){
     if (LOGGED_IN){
       let storyId = e.target.parentElement.id;
       let response = await user.addFavorite(user, storyId);
+      // update user instance with current favorites
       user.favorites = response.user.favorites;
+      console.log(user.favorites);
+      // let story = user.favorites[user.favorites.length-1];
+      // $favoriteList.append(generateStoryHTML(story));
       $(e.target).toggleClass("fas far");
     }
   })
@@ -220,10 +236,14 @@ $(document).ready(async function() {
     if (LOGGED_IN){
       let storyId = e.target.parentElement.id;
       let response = await user.removeFavorite(user, storyId);
-      console.log(response);
       user.favorites = response.user.favorites;
       $(e.target).toggleClass("far fas");
     }
+  })
+
+  $("#nav-favorites").on("click", function showFavorites(e){
+    $("#favorited-articles").show();
+    $allStoriesList.toggle();
   })
 
   // hide all elements in elementsArr
