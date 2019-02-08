@@ -158,8 +158,10 @@ $(document).ready(async function() {
     $createAccountForm.trigger("reset");
 
     //reset stories to show favorites.
-    // location.reload();
     await generateStories()
+
+    //Populate favorites HTML
+    addFavoritedArticles(user.favorites);
 
     // show the stories
     $allStoriesList.show();
@@ -224,6 +226,7 @@ $(document).ready(async function() {
     return storyMarkup;
   }
 
+  // Populates HTML favorites list from existing user.favorites
   function addFavoritedArticles(favArr){
     favArr.forEach(function(article){
       $favoriteList.append(generateStoryHTML(article));
