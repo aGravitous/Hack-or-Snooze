@@ -204,12 +204,18 @@ $(document).ready(async function() {
     return storyMarkup;
   }
 
-  $("ol").on("click", ".fa-grin-stars", async function(e){
+  // Sets a favorite by changing icon to solid, adding story id to user on server,
+  // We want it to remove a favorite on server, and set icon to outline if already a favorite.
+  $("ol").on("click", ".far", async function(e){
     if (LOGGED_IN){
       $(e.target).toggleClass("far fas");
       let storyId = e.target.parentElement.id;
-      let response = await user.updateFavorites(user, storyId);
-      console.log(response)
+      if (e.target.attr('class').includes("far")){
+        let response = await user.updateFavorites(user, storyId);
+        console.log(response);
+      } else {
+        console.log("I will remove a favorite!");
+      }
     }
   })
 
