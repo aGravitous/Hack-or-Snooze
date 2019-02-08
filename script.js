@@ -188,10 +188,21 @@ $(document).ready(async function() {
   function generateStoryHTML(story) {
     let hostName = getHostName(story.url);
 
+    let favIcon = '<i class="far fa-grin-stars fa-lg"></i>';
+  // Checks storyids against user favorites and creates HTML with
+  // solid favorite icon.
+    if (LOGGED_IN){
+      for (let i = 0; i < user.favorites.length; i++){
+        if(user.favorites[i].storyId === story.storyId){
+          favIcon = '<i class="fas fa-grin-stars fa-lg"></i>';
+        }
+      }
+    };
+
     // render story markup
     const storyMarkup = $(
       `<li id="${story.storyId}">
-          <i class="far fa-grin-stars fa-lg"></i>
+          ${favIcon}
           <a class="article-link" href="${story.url}" target="a_blank">
               <strong>${story.title}</strong>
            </a>
