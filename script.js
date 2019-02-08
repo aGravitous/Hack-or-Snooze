@@ -148,7 +148,7 @@ $(document).ready(async function() {
   /**
    * A rendering function to run to reset the forms and hide the login info
    */
-  function loginAndSubmitForm() {
+  async function loginAndSubmitForm() {
     // hide the forms for logging in and signing up
     $loginForm.hide();
     $createAccountForm.hide();
@@ -156,6 +156,10 @@ $(document).ready(async function() {
     // reset those forms
     $loginForm.trigger("reset");
     $createAccountForm.trigger("reset");
+
+    //reset stories to show favorites.
+    // location.reload();
+    await generateStories()
 
     // show the stories
     $allStoriesList.show();
