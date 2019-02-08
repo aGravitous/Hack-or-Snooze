@@ -220,6 +220,7 @@ $(document).ready(async function() {
     if (LOGGED_IN){
       let storyId = e.target.parentElement.id;
       let response = await user.removeFavorites(user, storyId);
+      console.log(response);
       user.favorites = response.user.favorites;
       $(e.target).toggleClass("far fas");
     }

@@ -163,9 +163,6 @@ class User {
       url: `${BASE_URL}/users/${username}/favorites/${storyId}`,
       type: 'DELETE',
       data: {token: user.loginToken},
-      success: function(result) {
-          console.log("DELETEDDD")
-      }
   });
   return response;
   }
