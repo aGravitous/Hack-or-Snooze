@@ -224,9 +224,9 @@ $(document).ready(async function() {
       let response = await user.addFavorite(user, storyId);
       // update user instance with current favorites
       user.favorites = response.user.favorites;
-      console.log(user.favorites);
-      // let story = user.favorites[user.favorites.length-1];
-      // $favoriteList.append(generateStoryHTML(story));
+      let story = user.favorites[user.favorites.length-1];
+      // add favorited article to DOM
+      $favoriteList.append(generateStoryHTML(story));
       $(e.target).toggleClass("fas far");
     }
   })
