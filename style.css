@@ -45,14 +45,6 @@ nav {
 
 }
 
-/* Would love to have this not move the elements.
-  .main-nav-links:hover{
-  margin: 0 10px;
-  border: solid black 1px;
-  border-radius: 5px;
-  
-} */
-
 .nav-link {
   font-size: 1.85rem;
   margin: 0 3px;
