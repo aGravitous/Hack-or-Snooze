@@ -206,16 +206,20 @@ $(document).ready(async function() {
 
   // Sets a favorite by changing icon to solid, adding story id to user on server,
   // We want it to remove a favorite on server, and set icon to outline if already a favorite.
-  $("ol").on("click", ".far", async function(e){
+  $("ol").on("click", ".far", async function addFavorite(e){
     if (LOGGED_IN){
-      $(e.target).toggleClass("far fas");
       let storyId = e.target.parentElement.id;
-      if (e.target.attr('class').includes("far")){
-        let response = await user.updateFavorites(user, storyId);
-        console.log(response);
-      } else {
-        console.log("I will remove a favorite!");
-      }
+      let response = await user.updateFavorites(user, storyId);
+      user.favorites = response.user.favorites;
+      $(e.target).toggleClass("fas");
+    }
+  })
+
+  $("ol").on("click", ".fas", async function removeFavorite(e){
+    if (LOGGED_IN){
+      let storyId = e.target.parentElement.id;
+      let response = e.target.parentElement.id;
+      $(e.target).toggleClass("far");
     }
   })
 

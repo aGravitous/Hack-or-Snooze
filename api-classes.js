@@ -156,6 +156,17 @@ class User {
     );
     return response;
   }
+
+  async removeFavorites(user, storyId){
+    let username = user.username;
+    let response = await $.ajax({
+      url: `${BASE_URL}/users/${username}/favorites/${storyId}`,
+      type: 'DELETE',
+      success: function(result) {
+          // Do something with the result
+      }
+  });
+  }
 }
 /**
  * Class to represent a single story. Has one method to update.
