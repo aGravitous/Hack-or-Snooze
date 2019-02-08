@@ -211,15 +211,17 @@ $(document).ready(async function() {
       let storyId = e.target.parentElement.id;
       let response = await user.updateFavorites(user, storyId);
       user.favorites = response.user.favorites;
-      $(e.target).toggleClass("fas");
+      $(e.target).toggleClass("fas far");
     }
   })
 
+  /* Removes favorites from favorites list */
   $("ol").on("click", ".fas", async function removeFavorite(e){
     if (LOGGED_IN){
       let storyId = e.target.parentElement.id;
-      let response = e.target.parentElement.id;
-      $(e.target).toggleClass("far");
+      let response = await user.removeFavorites(user, storyId);
+      user.favorites = response.user.favorites;
+      $(e.target).toggleClass("far fas");
     }
   })
 

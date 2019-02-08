@@ -162,10 +162,12 @@ class User {
     let response = await $.ajax({
       url: `${BASE_URL}/users/${username}/favorites/${storyId}`,
       type: 'DELETE',
+      data: {token: user.loginToken},
       success: function(result) {
-          // Do something with the result
+          console.log("DELETEDDD")
       }
   });
+  return response;
   }
 }
 /**
