@@ -1,3 +1,6 @@
+/* Be able to change fav on favorites list. */
+
+
 // global flag to easily tell if we're logged in
 let LOGGED_IN = false;
 
@@ -264,6 +267,16 @@ $(document).ready(async function() {
     }
   })
 
+
+  //Hey! The below code is unfished and just barely started.
+  //You are trying to get the favorites page functionality improved.
+
+  // Removes fav from articles on favorite-articles HTML
+  $("#favorited-articles").on("click", ".fas", async function(){
+    let response = await user.removeFavorite(user, storyId);
+  });
+
+  // Toggle maina and favorites.
   $("#nav-favorites").on("click", function showFavorites(e){
     $("#favorited-articles").show();
     $allStoriesList.toggle();
