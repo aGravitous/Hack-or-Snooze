@@ -254,7 +254,9 @@ $(document).ready(async function() {
     if (LOGGED_IN){
       let storyId = e.target.parentElement.id;
       let response = await user.removeFavorite(user, storyId);
+      let toBeCleared = $(`#favorited-articles>#${storyId}`)
       user.favorites = response.user.favorites;
+      toBeCleared.remove();
       $(e.target).toggleClass("far fas");
     }
   })
