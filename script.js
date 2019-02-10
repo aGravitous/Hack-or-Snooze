@@ -120,8 +120,8 @@ $(document).ready(async function() {
     $allStoriesList.toggle();
   });
 
-  // On click, this collects author, title, url, converts this to an object,
-  // Passes this object, as well as user and toke to API via
+  // On click, create story accepts author, title, url, converts this
+  // to an object, passes this object, as well as user and toke to API via
   // story instance method addStory.
   // What addStroy returns, append to DOM
   $("#submit-form").on("submit", async function(e) {
